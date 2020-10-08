@@ -404,6 +404,40 @@ form {
 			}
 		}
 
+		.cookieConsentContainer {
+			position: fixed;
+			bottom: -100%;
+			left: 0;
+			right: 0;
+			background: rgba(47, 54, 64, 0.712);
+			color: #f5f6f8;
+			padding: 0 32px;
+
+			transition: 400ms;
+			a {
+				color: #f5f6f8;
+			}
+			p {
+				text-align: center;
+			}
+			div {
+				justify-content: center;
+			}
+			.cookie-btn {
+				background: #9370db;
+				border: 0;
+				color: #f5f6f8;
+				font-size: 18px;
+				margin-bottom: 16px;
+				border-radius: 4px;
+				padding: 12px 16px;
+				cursor: pointer;
+			}
+		}
+
+		.active {
+			bottom: 0;
+		}
 		.nameContainer:hover {
 			transform: scale(1.05);
 		}

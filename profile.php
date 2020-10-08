@@ -64,12 +64,7 @@ if (isset($_POST['password'], $_POST['email'], $_POST['userBio'])) {
 				<li><a href="logout.php"><i class="fas fa-sign-out-alt"></i>Logout</a></li>
 			</ul>
 		</div>
-		<div class="profileNavBar">
-			<div class="profileNavBarContainer">
-				<a href="profile.php"><?= $_SESSION['name'] ?></a>
-				<?php echo '<img class="asideProfilePic" src="', $profile_pic, '"></img>'; ?>
-			</div>
-		</div>
+		
 	</aside>
 	<?php if (!isset($_GET['action'])) : ?>
 		<div class="profilePage">
@@ -138,6 +133,13 @@ if (isset($_POST['password'], $_POST['email'], $_POST['userBio'])) {
 				<div>
 
 
+				<div class="cookieConsentContainer">
+				<p>We use cookie on this website to give you the best experience on our site.<br/>To find out more, read our <a href="#">privacy policy</a> and <a href="#">cookie policy.</a></p>
+				<div class="flex">
+
+					<button class="cookie-btn">Okay</button>
+				</div>
+				</div>
 
 
 				</div </div> </div> </div> </div> <?php elseif ($_GET['action'] == 'edit') : ?> <div class="profilePage">
@@ -186,6 +188,21 @@ if (isset($_POST['password'], $_POST['email'], $_POST['userBio'])) {
 							flagImg.src = `https://flagcdn.com/224x168/${myresponse.country.toLowerCase()}.png`;
 						});
 				});
+
+				const cookieContainer = document.querySelector(".cookieConsentContainer");
+				const cookieBtn = document.querySelector(".cookie-btn");
+
+				cookieBtn.addEventListener("click", e =>{
+					e.preventDefault();
+					cookieContainer.classList.remove("active");
+					localStorage.setItem("acceptCookieConsent", "true");
+				});
+
+				setTimeout(() =>{
+					if(!localStorage.getItem("acceptCookieConsent")){
+						cookieContainer.classList.add("active");
+					}
+				}, 1000);
 			</script>
 </body>
 
