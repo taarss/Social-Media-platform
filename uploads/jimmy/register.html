@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,minimum-scale=1" />
+    <title>Register</title>
+    <link href="style.css" rel="stylesheet" type="text/css" />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.7.1/css/all.css"
+    />
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+  </head>
+  <body>
+    <div class="register">
+      <h1>Register</h1>
+      <div class="loginWrapper">
+        <form action="register.php" method="post" autocomplete="off">
+          <input
+            type="text"
+            name="username"
+            placeholder="Username"
+            id="username"
+            required
+          />
+          <input
+            type="password"
+            name="password"
+            placeholder="Password"
+            id="password"
+            required
+          />
+          <input
+            type="password"
+            name="cpassword"
+            placeholder="Confirm Password"
+            id="cpassword"
+            required
+          />
+          <input
+            type="email"
+            name="email"
+            placeholder="Email"
+            id="email"
+            required
+          />
+          <div class="msg"></div>
+          <input type="submit" value="Register" />
+          <p class="signHere">Already have an account? Login here:</p>
+          <div class="links">
+            <a href="index.php">Login</a>
+          </div>
+        </form>
+      </div>
+    </div>
+    <script>
+      $(".register form").submit(function (event) {
+        event.preventDefault();
+        var form = $(this);
+        var url = form.attr("action");
+        $.ajax({
+          type: "POST",
+          url: url,
+          data: form.serialize(),
+          success: function (data) {
+            $(".msg").text(data);
+          },
+        });
+      });
+    </script>
+  </body>
+</html>

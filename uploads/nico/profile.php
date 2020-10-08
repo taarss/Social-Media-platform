@@ -64,7 +64,12 @@ if (isset($_POST['password'], $_POST['email'], $_POST['userBio'])) {
 				<li><a href="logout.php"><i class="fas fa-sign-out-alt"></i>Logout</a></li>
 			</ul>
 		</div>
-		
+		<div class="profileNavBar">
+			<div class="profileNavBarContainer">
+				<a href="profile.php"><?= $_SESSION['name'] ?></a>
+				<?php echo '<img class="asideProfilePic" src="', $profile_pic, '"></img>'; ?>
+			</div>
+		</div>
 	</aside>
 	<?php if (!isset($_GET['action'])) : ?>
 		<div class="profilePage">
@@ -112,7 +117,7 @@ if (isset($_POST['password'], $_POST['email'], $_POST['userBio'])) {
 
 				<div class="nameContainer">
 					<?php echo '<img class="profilePic" src="', $profile_pic, '"></img>'; ?>
-					<div id="informationContainer">
+					<div>
 						<p><?= $_SESSION['name'] ?>
 							<?php
 							if ($isAdmin == true) { ?>
@@ -120,26 +125,15 @@ if (isset($_POST['password'], $_POST['email'], $_POST['userBio'])) {
 							<?php
 							}
 
-							?>
+							?>										
 						</p>
 						<p><?= $email ?></p>
-						<div class="flagContainer flex">
-							<p id="countryName"></p>
-							<img src="" alt="Flag" id="flagImg">
-						</div>
-						
+						<p><?php echo getCountry(); ?></p>
 					</div>
 				</div>
 				<div>
 
 
-				<div class="cookieConsentContainer">
-				<p>We use cookie on this website to give you the best experience on our site.<br/>To find out more, read our <a href="#">privacy policy</a> and <a href="#">cookie policy.</a></p>
-				<div class="flex">
-
-					<button class="cookie-btn">Okay</button>
-				</div>
-				</div>
 
 
 				</div </div> </div> </div> </div> <?php elseif ($_GET['action'] == 'edit') : ?> <div class="profilePage">
@@ -174,36 +168,6 @@ if (isset($_POST['password'], $_POST['email'], $_POST['userBio'])) {
 					</div>
 				</div>
 			<?php endif; ?>
-			<script>
-			fetch("https://json.geoiplookup.io/")
-				.then((response) => response.json())
-				.then((data = Response) => {
-					fetch(`https://get.geojs.io/v1/ip/country/${data.ip}.json`)
-						.then((mydata) => mydata.json())
-						.then((myresponse) => {
-							console.log(myresponse);
-							const countryName = document.querySelector("#countryName");
-							countryName.innerText = myresponse.name;
-							const flagImg = document.querySelector("#flagImg");
-							flagImg.src = `https://flagcdn.com/224x168/${myresponse.country.toLowerCase()}.png`;
-						});
-				});
-
-				const cookieContainer = document.querySelector(".cookieConsentContainer");
-				const cookieBtn = document.querySelector(".cookie-btn");
-
-				cookieBtn.addEventListener("click", e =>{
-					e.preventDefault();
-					cookieContainer.classList.remove("active");
-					localStorage.setItem("acceptCookieConsent", "true");
-				});
-
-				setTimeout(() =>{
-					if(!localStorage.getItem("acceptCookieConsent")){
-						cookieContainer.classList.add("active");
-					}
-				}, 1000);
-			</script>
 </body>
 
 </html>
