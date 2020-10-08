@@ -2,9 +2,9 @@
 // We need to use sessions, so you should always start sessions using the below code.
 session_start();
 $DATABASE_HOST = 'localhost';
-$DATABASE_USER = 'christianvillads_techvoltoxdb';
-$DATABASE_PASS = 'Vhh64rpz';
-$DATABASE_NAME = 'christianvillads_techvoltoxdb';
+$DATABASE_USER = 'christianvillads_techgaimdb';
+$DATABASE_PASS = 'Aspit123';
+$DATABASE_NAME = 'christianvillads_techgaimdb';
 $con = mysqli_connect($DATABASE_HOST, $DATABASE_USER, $DATABASE_PASS, $DATABASE_NAME);
 if (mysqli_connect_errno()) {
     exit('Failed to connect to MySQL: ' . mysqli_connect_error());
@@ -31,52 +31,50 @@ function checkLoggedIn($con)
         exit;
     }
 }
-if (isset($_SESSION['loggedin'])) {
 
-    $stmt = $con->prepare('SELECT user_id, last_heartbeat FROM online_users');
-    $stmt->execute();
-    $result = $stmt->get_result();
-    $users = $result->fetch_all(MYSQLI_ASSOC);
-    if (isUserOnline($users)) {
-        foreach ($users as $row) {
-            $currentNewTime = new DateTime('now');
-            $result = $currentNewTime->format('Y-m-d H:i:s');
-            if ($row['user_id'] == $_SESSION['id']) {
+$stmt = $con->prepare('SELECT user_id, last_heartbeat FROM online_users');
+$stmt->execute();
+$result = $stmt->get_result();
+$users = $result->fetch_all(MYSQLI_ASSOC);
+if (isUserOnline($users)) {
+    foreach ($users as $row) {
+        $currentNewTime = new DateTime('now');
+        $result = $currentNewTime->format('Y-m-d H:i:s');
+        if ($row['user_id'] == $_SESSION['id']) {
 
-                $stmt = $con->prepare('UPDATE online_users SET last_heartbeat = ? WHERE user_id = ?');
-                $stmt->bind_param('ss', $result, $_SESSION['id']);
-                $stmt->execute();
-                $stmt->close();
-            }
+            $stmt = $con->prepare('UPDATE online_users SET last_heartbeat = ? WHERE user_id = ?');
+            $stmt->bind_param('ss', $result, $_SESSION['id']);
+            $stmt->execute();
+            $stmt->close();
         }
-        foreach ($users as $row) {
-            /*
+    }
+    foreach ($users as $row) {
+        /*
         $myDateTime = DateTime::createFromFormat('Y-m-d H:i:s', $result);
         $myDateTime2 = DateTime::createFromFormat('Y-m-d H:i:s', $dtNow);
         $dtToCompare = $myDateTime;
         $diff = $dtNow - $dtToCompare;*/
-            $newTime = $row['last_heartbeat'];
-            $dtNow = new DateTime();
-            $result = $dtNow->format('Y-m-d H:i:s');
-            $timeFirst  = strtotime($result);
-            $timeSecond = strtotime($newTime);
-            $diff = ($timeFirst - $timeSecond);
-            if ($diff > 300) {
-                $stmt = $con->prepare('DELETE FROM online_users WHERE user_id = ?');
-                $stmt->bind_param('i', $row['user_id']);
-                $stmt->execute();
-            }
+        $newTime = $row['last_heartbeat'];
+        $dtNow = new DateTime();
+        $result = $dtNow->format('Y-m-d H:i:s');
+        $timeFirst  = strtotime($result);
+        $timeSecond = strtotime($newTime);
+        $differenceInSeconds = ($timeFirst - $timeSecond);
+        if ($diff > 5) {
+            echo "Deleted user from online table";
+            $stmt = $con->prepare('DELETE FROM online_users WHERE user_id = ?');
+            $stmt->bind_param('i', $row['user_id']);
+            $stmt->execute();
         }
-    } else {
-        $currentNewTime = new DateTime('now');
-        $result = $currentNewTime->format('Y-m-d H:i:s');
-        $stmt = $con->prepare('INSERT INTO online_users (user_id, last_heartbeat) VALUES (?, ?)');
-        $stmt->bind_param('ss', $_SESSION['id'], $result);
-        $stmt->execute();
-        $stmt->close();
     }
+} else {
+    $currentNewTime = new DateTime('now');
+    $result = $currentNewTime->format('Y-m-d H:i:s');
+    $stmt = $con->prepare('INSERT INTO online_users (user_id, last_heartbeat) VALUES (?, ?)');
+    $stmt->bind_param('ss', $_SESSION['id'], $result);
+    $stmt->execute();
+    $stmt->close();
 }
-
 
 function isUserOnline($users)
 {
@@ -91,10 +89,10 @@ function isUserOnline($users)
 
 function getCountry($ip = NULL, $purpose = "location", $deep_detect = TRUE)
 {
-    $DATABASE_HOST = 'localhost';
-    $DATABASE_USER = 'christianvillads_techvoltoxdb';
-    $DATABASE_PASS = 'Vhh64rpz';
-    $DATABASE_NAME = 'christianvillads_techvoltoxdb';
+    $DATABASE_HOST = 'christianvillads.tech.mysql';
+    $DATABASE_USER = 'christianvillads_techgaimdb';
+    $DATABASE_PASS = 'Aspit123';
+    $DATABASE_NAME = 'christianvillads_techgaimdb';
     $con = mysqli_connect($DATABASE_HOST, $DATABASE_USER, $DATABASE_PASS, $DATABASE_NAME);
     if (mysqli_connect_errno()) {
         exit('Failed to connect to MySQL: ' . mysqli_connect_error());

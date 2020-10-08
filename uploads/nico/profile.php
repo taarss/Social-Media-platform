@@ -117,7 +117,7 @@ if (isset($_POST['password'], $_POST['email'], $_POST['userBio'])) {
 
 				<div class="nameContainer">
 					<?php echo '<img class="profilePic" src="', $profile_pic, '"></img>'; ?>
-					<div id="informationContainer">
+					<div>
 						<p><?= $_SESSION['name'] ?>
 							<?php
 							if ($isAdmin == true) { ?>
@@ -125,14 +125,10 @@ if (isset($_POST['password'], $_POST['email'], $_POST['userBio'])) {
 							<?php
 							}
 
-							?>
+							?>										
 						</p>
 						<p><?= $email ?></p>
-						<div class="flagContainer flex">
-							<p id="countryName"></p>
-							<img src="" alt="Flag" id="flagImg">
-						</div>
-						
+						<p><?php echo getCountry(); ?></p>
 					</div>
 				</div>
 				<div>
@@ -172,21 +168,6 @@ if (isset($_POST['password'], $_POST['email'], $_POST['userBio'])) {
 					</div>
 				</div>
 			<?php endif; ?>
-			<script>
-			fetch("https://json.geoiplookup.io/")
-				.then((response) => response.json())
-				.then((data = Response) => {
-					fetch(`https://get.geojs.io/v1/ip/country/${data.ip}.json`)
-						.then((mydata) => mydata.json())
-						.then((myresponse) => {
-							console.log(myresponse);
-							const countryName = document.querySelector("#countryName");
-							countryName.innerText = myresponse.name;
-							const flagImg = document.querySelector("#flagImg");
-							flagImg.src = `https://flagcdn.com/224x168/${myresponse.country.toLowerCase()}.png`;
-						});
-				});
-			</script>
 </body>
 
 </html>
