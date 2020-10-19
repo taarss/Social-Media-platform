@@ -128,7 +128,7 @@ $this_page_first_result = ($page - 1) * $results_per_page;
 
 				?>
 			</div>
-		</div>
+			
 	</div>
 	<div class="altMenu">
 		<div class="asideFriends">
@@ -165,6 +165,7 @@ $this_page_first_result = ($page - 1) * $results_per_page;
 	});
 
 	windows.setInterval(keepAlive, 20000);
+
 </script>
 
 </html>

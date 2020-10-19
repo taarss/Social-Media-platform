@@ -41,6 +41,14 @@ if (isset($_POST['email'], $_POST['subject'], $_POST['name'], $_POST['msg'])) {
 </head>
 
 <body class="loggedin">
+    <?php
+    $stmt = $con->prepare('SELECT profile_pic FROM accounts WHERE id = ?');
+    $stmt->bind_param('i', $_SESSION['id']);
+    $stmt->execute();
+    $stmt->bind_result($profile_pic);
+    $stmt->fetch();
+    $stmt->close();
+    ?>
     <aside class="profileAside">
         <div class="sidebar">
             <h2>Voltox</h2>
@@ -56,17 +64,10 @@ if (isset($_POST['email'], $_POST['subject'], $_POST['name'], $_POST['msg'])) {
             <div class="profileNavBarContainer">
                 <a href="profile.php"><?= $_SESSION['name'] ?></a>
                 <?php echo '<img class="asideProfilePic" src="', $profile_pic, '"></img>'; ?>
+                
             </div>
         </div>
     </aside>
-    <?php
-    $stmt = $con->prepare('SELECT profile_pic FROM accounts WHERE id = ?');
-    $stmt->bind_param('i', $_SESSION['id']);
-    $stmt->execute();
-    $stmt->bind_result($profile_pic);
-    $stmt->fetch();
-    $stmt->close();
-    ?>
     <div class="profilePage">
         <nav class="navtop">
             <div>
@@ -99,7 +100,7 @@ if (isset($_POST['email'], $_POST['subject'], $_POST['name'], $_POST['msg'])) {
             </div>
         </div>
     </div>
-
+    <script src="cookieConsent.js"></script>
 </body>
 
 </html>

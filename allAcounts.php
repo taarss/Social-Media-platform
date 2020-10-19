@@ -108,6 +108,7 @@ $stmt->close();
                 ?>
             </div>
         </div>
+        <script src="cookieConsent.js"></script>
 </body>
 
 </html>
