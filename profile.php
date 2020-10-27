@@ -55,15 +55,17 @@ if (isset($_POST['password'], $_POST['email'], $_POST['userBio'])) {
 <body class="loggedin">
 	<aside class="profileAside">
 		<div class="sidebar">
-			<h2>Voltox</h2>
-			<ul>
-				<li><a href="home.php"><i class="fas fa-home"></i>Home</a></li>
-				<li><a href="profile.php"><i class="fas fa-user"></i>Profile</a></li>
-				<li><a href="allAcounts.php"><i class="fas fa-address-book"></i>Browse users</a></li>
-				<li><a href="contact.php"><i class="fas fa-paper-plane"></i>Contact</a></li>
-				<li><a href="logout.php"><i class="fas fa-sign-out-alt"></i>Logout</a></li>
-			</ul>
-		</div>
+            <h2>Voltox</h2>
+            <ul>
+                <li><a href="home.php"><i class="fas fa-home"></i>Home</a></li>
+                <li><a href="profile.php"><i class="fas fa-user"></i>Profile</a></li>
+                <li><a href="allAcounts.php"><i class="fas fa-address-book"></i>Browse users</a></li>
+                <li><a href="allAcounts.php"><i class="fas fa-address-book"></i>Browse friends</a></li>
+                <li><a href="contact.php"><i class="fas fa-paper-plane"></i>Contact</a></li>
+                <li><a href="gamespage.php"><i class="fas fa-gamepad"></i>Games</a></li>
+                <li><a href="logout.php"><i class="fas fa-sign-out-alt"></i>Logout</a></li>
+            </ul>
+        </div>
 		
 	</aside>
 	<?php if (!isset($_GET['action'])) : ?>
@@ -186,7 +188,7 @@ if (isset($_POST['password'], $_POST['email'], $_POST['userBio'])) {
 				
 				
 			</script>
-			<script src="cookieConsent.js"></script>
+			<script src="addScriptTags.js"></script>
 </body>
 
 </html>

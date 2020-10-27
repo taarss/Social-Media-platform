@@ -35,7 +35,7 @@ if (isset($_POST['email'], $_POST['subject'], $_POST['name'], $_POST['msg'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Contact</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
 </head>
@@ -56,7 +56,9 @@ if (isset($_POST['email'], $_POST['subject'], $_POST['name'], $_POST['msg'])) {
                 <li><a href="home.php"><i class="fas fa-home"></i>Home</a></li>
                 <li><a href="profile.php"><i class="fas fa-user"></i>Profile</a></li>
                 <li><a href="allAcounts.php"><i class="fas fa-address-book"></i>Browse users</a></li>
+                <li><a href="allAcounts.php"><i class="fas fa-address-book"></i>Browse friends</a></li>
                 <li><a href="contact.php"><i class="fas fa-paper-plane"></i>Contact</a></li>
+                <li><a href="gamespage.php"><i class="fas fa-gamepad"></i>Games</a></li>
                 <li><a href="logout.php"><i class="fas fa-sign-out-alt"></i>Logout</a></li>
             </ul>
         </div>
@@ -100,7 +102,7 @@ if (isset($_POST['email'], $_POST['subject'], $_POST['name'], $_POST['msg'])) {
             </div>
         </div>
     </div>
-    <script src="cookieConsent.js"></script>
+    <script src="addScriptTags.js"></script>
 </body>
 
 </html>

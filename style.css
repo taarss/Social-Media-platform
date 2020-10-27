@@ -417,6 +417,31 @@ form div select {
 	min-height: 100vh;
 }
 
+.profilePage .slideshow-Image-Border {
+	width: 100%;
+	border: 5px solid #9370db;
+	border-left: 0;
+	border-right: 0;
+}
+
+.profilePage .slideshow-Image-Border .slideshow-container {
+	width: 100%;
+	margin: 0;
+	overflow: hidden;
+}
+
+.profilePage .slideshow-Image-Border .slideshow-container .slideShow-slide {
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	width: 100%;
+}
+
+.profilePage .slideshow-Image-Border .slideshow-container .slideShow-slide img {
+	width: 25%;
+	height: 400px;
+}
+
 .profilePage .navtop {
 	display: -webkit-box;
 	display: -ms-flexbox;
@@ -580,6 +605,25 @@ form div select {
 .profilePage .content .nameContainer #flagImg {
 	width: 10%;
 	margin-left: 0.5vw;
+}
+
+.profilePage .content #profilePosts div {
+	margin-top: 30px;
+	background-color: ghostwhite;
+	padding: 30px;
+	width: 100%;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-shadow: 0px 0px 5px -3px rgba(0, 0, 0, 0.75);
+	box-shadow: 0px 0px 5px -3px rgba(0, 0, 0, 0.75);
+	-webkit-transition: 300ms;
+	transition: 300ms;
+}
+
+.profilePage .content #profilePosts div .postProfilePic {
+	width: 10px;
+	border-radius: 50%;
 }
 
 .profilePage .content .tableContainer {
@@ -790,6 +834,11 @@ form div select {
 	width: 15%;
 }
 
+.activeLink {
+	font-weight: bold;
+	color: white;
+}
+
 .sidebar h2 {
 	color: #fff;
 	text-transform: uppercase;
@@ -814,6 +863,11 @@ form div select {
 .sidebar ul li a {
 	color: #bdb8d7;
 	display: block;
+}
+
+.sidebar ul li .activeLink {
+	font-weight: bold;
+	color: white;
 }
 
 .sidebar ul li a .fas {
